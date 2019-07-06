@@ -4,6 +4,8 @@ import random
 
 from datetime import date
 
+WEDNESDAY = 2
+
 
 class MyClient(discord.Client):
     def __init__(self):
@@ -18,10 +20,13 @@ class MyClient(discord.Client):
         if message.author == client.user:
             return
 
+        if date.today().weekday() == WEDNESDAY:
+            await message.add_reaction("🐸")
+
         if "wednesday" in message.content.lower():
             self.times_called += 1
 
-            if date.today().weekday() == 2:
+            if date.today().weekday() == WEDNESDAY:
                 filepath = os.path.join("frogs", random.choice(os.listdir("frogs")))
                 await message.channel.send(file=discord.File(filepath))
             else:
