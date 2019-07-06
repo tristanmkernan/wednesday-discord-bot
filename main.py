@@ -1,5 +1,8 @@
 import discord
 import os
+import random
+
+from datetime import date
 
 
 class MyClient(discord.Client):
@@ -18,8 +21,9 @@ class MyClient(discord.Client):
         if "wednesday" in message.content.lower():
             self.times_called += 1
 
-            if message.created_at.weekday() == 2:
-                await message.channel.send(file=discord.File("frog.jpg"))
+            if date.today().weekday() == 4:
+                filepath = os.path.join("frogs", random.choice(os.listdir("frogs")))
+                await message.channel.send(file=discord.File(filepath))
             else:
                 await message.channel.send("Today is not Wednesday")
 
