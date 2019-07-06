@@ -21,7 +21,7 @@ class MyClient(discord.Client):
         if "wednesday" in message.content.lower():
             self.times_called += 1
 
-            if date.today().weekday() == 4:
+            if date.today().weekday() == 2:
                 filepath = os.path.join("frogs", random.choice(os.listdir("frogs")))
                 await message.channel.send(file=discord.File(filepath))
             else:
