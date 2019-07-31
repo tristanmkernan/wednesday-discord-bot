@@ -20,9 +20,6 @@ class MyClient(discord.Client):
         if message.author == client.user:
             return
 
-        if date.today().weekday() == WEDNESDAY:
-            await message.add_reaction("🐸")
-
         if "wednesday" in message.content.lower():
             self.times_called += 1
 
